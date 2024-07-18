@@ -20,7 +20,7 @@ class SendMessageRequest
 
         $auth ??= [
             'X-Api-Key' => config('services.lmt.key'),
-            'X-Secret' => config('services.lmt.secret'),
+            'X-Secret' => config('services.lmt.secret')
         ];
 
         $data = [
@@ -31,9 +31,10 @@ class SendMessageRequest
             'maskedMsisdn' => $message->maskedNumbers()
         ];
 
-        return $client->post('/pushes', [
-            'form_params' => $data,
-            'headers' => $auth + ['Content-Type' => 'application/json']
+        return $client->post('/api/v1/pushes', [
+            'json' => $data,
+            'headers' => $auth + ['Content-Type' => 'application/json'],
+            'http_errors' => false
         ]);
     }
 }

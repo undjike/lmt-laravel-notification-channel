@@ -31,7 +31,7 @@ class LmtMessage
      *
      * @var bool
      */
-    protected bool $displayNumbers = false;
+    protected bool $displayNumbers = true;
 
     /**
      * LmtMessage constructor.

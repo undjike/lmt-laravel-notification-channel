@@ -7,3 +7,5 @@ coverage
 .php_cs.cache
 .phpunit.result.cache
 .editorconfig
+phpunit.xml.dist.bak
+.phpunit.cache

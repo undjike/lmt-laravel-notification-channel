@@ -8,15 +8,14 @@ use Illuminate\Support\ServiceProvider;
 
 class LmtServiceProvider extends ServiceProvider
 {
-    public const BASE_URL = 'https://sms.lmtgroup.com/api/v1';
+    public const BASE_URL = 'https://sms.lmtgroup.com';
 
     /**
      * Register the application services.
      *
-     * @noinspection ReturnTypeCanBeDeclaredInspection
      * @noinspection PhpUnusedParameterInspection
      */
-    public function register()
+    public function register(): void
     {
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('lmt', function ($app) {
