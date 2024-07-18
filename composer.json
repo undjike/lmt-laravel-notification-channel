@@ -1,0 +1,54 @@
+{
+  "name": "undjike/lmt-laravel-notification-channel",
+  "description": "Laravel Notification Channel based on LMT SMS service",
+  "keywords": [
+    "lmt", "laravel", "sms notification",
+    "notification", "notification channel", "lmt notification",
+    "sms", "cameroon", "undjike", "africa"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ulrich Pascal Ndjike Zoa",
+      "email": "ndjikezoaulrich@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.8",
+    "illuminate/notifications": ">=9.52",
+    "illuminate/support": ">=9.52"
+  },
+  "require-dev": {
+    "mockery/mockery": ">=1.6",
+    "phpunit/phpunit": ">=9.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Undjike\\LmtNotificationChannel\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Undjike\\LmtNotificationChannel\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Undjike\\LmtNotificationChannel\\LmtServiceProvider"
+      ]
+    }
+  }
+}
