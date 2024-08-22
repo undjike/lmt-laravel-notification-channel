@@ -3,6 +3,7 @@
 namespace Undjike\LmtNotificationChannel;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\Notification;
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
@@ -40,7 +41,13 @@ class LmtChannel
      */
     public function send(mixed $notifiable, Notification $notification): array
     {
-        if (! $recipient = $notifiable->routeNotificationFor('Lmt')) {
+        $recipient = match (true) {
+            is_string($notifiable) => $notifiable,
+            $notifiable instanceof AnonymousNotifiable && $notifiable->routeNotificationFor(__CLASS__) => $notifiable->routeNotificationFor(__CLASS__),
+            default => $notifiable->routeNotificationFor('lmt')
+        };
+
+        if (! $recipient) {
             throw CouldNotSendNotification::lmtRespondedWithAnError('Your notifiable instance does not have function routeNotificationForLmt.');
         }
 
