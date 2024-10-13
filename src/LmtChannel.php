@@ -78,8 +78,17 @@ class LmtChannel
             throw CouldNotSendNotification::lmtRespondedWithAnError('Expected string or array as recipient.');
         }
 
+        $this->sanitizePhoneNumbers($recipient);
+
         $response = SendMessageRequest::execute($message, $recipient);
 
         return self::responsePayload($response);
+    }
+
+    public function sanitizePhoneNumbers(array &$phoneNumbers): void
+    {
+        array_walk($phoneNumbers, function (&$value) {
+            $value = str($value)->chopStart(['+', '00'])->value();
+        });
     }
 }
